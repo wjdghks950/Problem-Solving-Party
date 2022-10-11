@@ -15,6 +15,15 @@ import sys
 
 def encryption(s):
     # Write your code here
+    l = len(s)
+    row = math.ceil(math.sqrt(l))
+    result = ''
+    for i in range(0,row):
+        result+=s[i::row]
+        result+=' '
+    result = result.rstrip(' ')
+    
+    return result
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -26,4 +35,3 @@ if __name__ == '__main__':
     fptr.write(result + '\n')
 
     fptr.close()
-
