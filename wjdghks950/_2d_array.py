@@ -2,23 +2,16 @@
 https://www.hackerrank.com/challenges/2d-array/problem?isFullScreen=true
 
 '''
-
 def hourglassSum(arr):
     # Write your code here
-    r = 3
-    sum_arr = []
-    for ptr in range(4):
-        for i in range(4): # Col index
-            hrglass_sum = 0
-            for j in range(3): # Row index
-                hrglass_sum += sum(arr[ptr+j][i:i+r])
-                if j == 1:  # Second row (leave out the 0th, 2nd col for sum)
-                    hrglass_sum -= arr[ptr+j][i]
-                    hrglass_sum -= arr[ptr+j][i+2]
-            sum_arr.append(hrglass_sum)
-    return max(sum_arr)
-            
-            
+    max_val = -9 * 9
+    for i in range(1, 5):
+        for j in range(1, 5):
+            cur_val = arr[i][j] + sum(arr[i-1][j-1:j+2]) + sum(arr[i+1][j-1:j+2])
+            if max_val < cur_val:
+                max_val = cur_val
+    return max_val
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
